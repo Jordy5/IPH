@@ -1,0 +1,207 @@
+.body{
+    background-color: aliceblue;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+}
+.row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 200px;
+}
+.padre{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    
+}
+.tamaño-imagen{
+    width: 100%;
+    height: 800px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+.estilo-profile{
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+/*estilo para los inputs*/
+.cajaTexto{
+    background-color: #cccccc40;
+    border-color: slategray;
+    border-radius: 30px;
+    width: 100%;
+    padding: 15px;
+    border-width: 0px;
+    margin-bottom: 20px;
+}
+.cajaTexto:focus{
+    outline: 1px solid #8AA6A3;
+    box-shadow: 0 0 10px #8AA6A3;
+}
+/**/
+.btnform{
+    background-color: #127369;
+    border-color: slategray;
+    border-radius: 30px;
+    width: 100%;
+    padding: 15px;
+    border-width: 0px;
+    margin-bottom: 20px;
+    color: white;
+    cursor: pointer;
+    outline: none;
+}
+.btnform:hover{
+    background-color: #10403B;
+}
+.btnform:active{
+    background-color: #8AA6A3;
+    box-shadow: 0 5px #4C5958;
+    transform: translateY(4px);
+}
+.texto{
+    font-size: 20px;
+    color: slategray;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 5px;
+    
+}
+.btnswicth{
+    background-color: darkblue;
+    border-radius: 30px;
+    padding: 8px;
+    border-width: 0px;
+    color: white;
+    font-size: 16px;
+}
+
+
+.btn{
+    padding-top: 10px;
+    padding-bottom: 10px;
+ 
+}
+.header{
+    display: flex;
+    background-color: gray;
+    margin: 0;
+}
+/**/
+.desplegable{
+    background: #127369;
+    
+}
+.barras{
+    display: none;
+}
+ul{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+}
+li{
+    list-style: none;
+}
+nav a{
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 1.1rem;
+}
+li a{
+    padding: 10px;
+    display: block;
+    text-align: left;
+}
+ul li a:hover{
+    border-radius: 20px;
+    background: #10403B;
+}
+/*aca configuro como se veria en tablet*/
+@media (max-width: 850px){
+    .barras{
+        background-color: #1e1e1e;
+        display: block;
+    }
+    .desplegable{
+        /*width: 50%;
+        height: 100vh;*/
+        transform: translate(-100%);
+        transition: 0.5s;
+        font-size: 1.5rem;
+        width: 50%;
+        background: rgba(30, 30, 30, 0.5);
+        backdrop-filter: blur(2px);
+    }
+    i{
+        font-size: 30px;
+        background: #1e1e1e;
+        color: white;
+    }
+    li a{
+        padding: 20px 0px 20px 20px;
+        display: block;
+        text-align: left;
+    }
+    
+    ul{
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    button{
+        margin: 10px 10px 10px 20px;
+        border: none;
+    }
+    .boton_menu{
+        background-image: url('./icono_menu.png');
+        background-color: #1e1e1e;
+        background-repeat: no-repeat;
+        height: 30px;
+        width: 30px;
+        background-size: 30px 30px;
+        background-position:center;
+    }
+    /*con esta clase abro y cierro el menu con toggle*/
+    .abrir_menu{
+        background: rgba(30, 30, 30, 0.6);
+        backdrop-filter: blur(2px);
+        transform: translate(0%);
+        width: 50%;
+        transition: 0.5s;
+    }
+    /*con esta clase cambio las barras por una x*/
+    .colocar_x{
+        background-image: url('./icono_x.png');
+        background-color: #1e1e1e;
+        background-repeat: no-repeat;
+        height: 30px;
+        width: 30px;
+        background-size: 30px 30px;
+        background-position:center;
+    }
+}
+/*aca configuro como se veria en celular*/
+@media (max-width: 500px){
+    .desplegable{
+        width: 100%;
+        height: 100vh;
+        font-size: 1.6rem;
+    }
+    button{
+        margin: 10px 10px 10px 15px;
+    }
+}
+
