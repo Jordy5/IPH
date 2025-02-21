@@ -2,10 +2,21 @@ import React, { useState } from 'react'
 import imgLogin from '../assets/parrot.jpg'
 import imge from '../assets/imagen.jpg'
 import appFirebase from '../credenciales'
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from 'firebase/auth'
+import { TextField } from '@mui/material'
 const auth = getAuth(appFirebase)
 
-const Login = () => {
+const Login = (usuario) => {
+    if(!usuario){
+        return <Navigate to="/" replace />; 
+      }
+      
+      if (usuario && usuario.rol === 'admin') {
+        return <Navigate to="/admin" />;
+      }
+      if (usuario && usuario.rol === 'policia') {
+        return <Navigate to="/policia" />; 
+      } 
     //variables de estado
     const { registrando, setRegistrando } = useState(false)
     const functAutentication = async (e) => {
@@ -24,6 +35,7 @@ const Login = () => {
             }
         }
     }
+    
     return (
 
         <div className='container'>
@@ -33,8 +45,9 @@ const Login = () => {
                         <div className="card card-body shadow-lg">
                             <img src={imgLogin} alt="" className='estilo-profile' />
                             <form onSubmit={functAutentication}>
-                                <input type="text" placeholder='Ingresa Email' className='cajaTexto' id='email' />
-                                <input type="password" placeholder='Ingresa password' className='cajaTexto' id='password' />
+                                <input variant='outlined'type="text" placeholder='Ingresa Email' className='cajaTexto' id='email' required/>
+                                <input type='password' placeholder='Ingresa Contraseña' className='cajaTexto' id='password' required />
+                                
                                 <button className='btnform'>Iniciar Sesión</button>
                                 <a href=""></a>
                             </form>

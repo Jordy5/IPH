@@ -1,18 +1,35 @@
 .body{
-    background-color: aliceblue;
+    background-color: #BFBFBF;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     height: 100vh;
+    margin: 0;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+    margin-top: -50px;
 }
 .row {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 200px;
+    padding-top: 15px;
 }
 .padre{
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     height: 100%;
@@ -48,6 +65,8 @@
 }
 /**/
 .btnform{
+    display: block;
+    text-align: center;
     background-color: #127369;
     border-color: slategray;
     border-radius: 30px;
@@ -55,9 +74,12 @@
     padding: 15px;
     border-width: 0px;
     margin-bottom: 20px;
+    margin: 0 auto;
     color: white;
     cursor: pointer;
     outline: none;
+    text-align: center;
+
 }
 .btnform:hover{
     background-color: #10403B;
@@ -72,7 +94,6 @@
     color: slategray;
     font-family: Arial, Helvetica, sans-serif;
     margin-top: 5px;
-    
 }
 .btnswicth{
     background-color: darkblue;
@@ -87,7 +108,7 @@
 .btn{
     padding-top: 10px;
     padding-bottom: 10px;
- 
+    
 }
 .header{
     display: flex;
@@ -129,7 +150,7 @@ ul li a:hover{
 /*aca configuro como se veria en tablet*/
 @media (max-width: 850px){
     .barras{
-        background-color: #1e1e1e;
+        background-color: #127369;
         display: block;
     }
     .desplegable{
@@ -138,7 +159,7 @@ ul li a:hover{
         transform: translate(-100%);
         transition: 0.5s;
         font-size: 1.5rem;
-        width: 50%;
+        /* width: 50%; */
         background: rgba(30, 30, 30, 0.5);
         backdrop-filter: blur(2px);
     }
@@ -156,6 +177,7 @@ ul li a:hover{
     ul{
         padding: 0;
         margin: 0;
+        top: -10px;
         width: 100%;
         height: 100vh;
         display: flex;
@@ -164,6 +186,7 @@ ul li a:hover{
     button{
         margin: 10px 10px 10px 20px;
         border: none;
+        
     }
     .boton_menu{
         background-image: url('./icono_menu.png');
@@ -193,15 +216,30 @@ ul li a:hover{
         background-position:center;
     }
 }
-/*aca configuro como se veria en celular*/
+/*para configuro como se veria en celular*/
 @media (max-width: 500px){
+    
     .desplegable{
-        width: 100%;
-        height: 100vh;
-        font-size: 1.6rem;
+        /* width: 100%; */
+        /* height: 100vh; */
+        /* font-size: 1.6rem; */
     }
     button{
         margin: 10px 10px 10px 15px;
+        border: none;
     }
 }
+
+  
+/*https://ui.shadcn.com/
+https://mui.com/
+ant dising
+
+https://developer.mozilla.org/es/docs/Web/API/Network_Information_API
+
+
+https://supabase.com/pricing
+
+*/
+
 
