@@ -20,6 +20,8 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app); 
 
+export const BASE_URL = 'http://127.0.0.1:5001/iph-react/us-central1'
+
 
 const db = getFirestore(app);
 const functions = getFunctions(app);
@@ -46,26 +48,26 @@ async function getUserRole(userId) {
 }
 
 
-onAuthStateChanged(auth, async (user) => {
-  if (user) {
-    try {
-      const idToken = await getIdToken(user, true);
-      console.log("Token:", idToken);  
+// onAuthStateChanged(auth, async (user) => {
+//   if (user) {
+//     try {
+//       const idToken = await getIdToken(user, true);
+//       console.log("Token:", idToken);  
 
-      const decodedToken = jwtDecode(idToken);
-      console.log("Decoded token:", decodedToken);
+//       const decodedToken = jwtDecode(idToken);
+//       console.log("Decoded token:", decodedToken);
 
       
-      const userRole = await getUserRole(user.uid);
-      console.log("Rol del usuario desde Firestore:", userRole);
+//       const userRole = await getUserRole(user.uid);
+//       console.log("Rol del usuario desde Firestore:", userRole);
       
-    } catch (error) {
-      console.error("Error al obtener el token:", error);
-    }
-  } else {
-    console.log("Usuario no autenticado.");
-  }
-});
+//     } catch (error) {
+//       console.error("Error al obtener el token:", error);
+//     }
+//   } else {
+//     console.log("Usuario no autenticado.");
+//   }
+// });
 
 
 export { db }; 

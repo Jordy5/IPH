@@ -4,7 +4,9 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
   server: {
-    allowedHosts: ['642b-177-244-182-6.ngrok-free.app'], // Agrega tu dominio de ngrok aquí
+    allowedHosts:[
+      '.ngrok-free.app' // Esto permitirá todos los subdominios de ngrok-free.app
+    ], // Agrega tu dominio de ngrok aquí
     host: true, // Permite acceder desde otros dispositivos en la red
     port: 5173, // Asegúrate de que coincida con tu puerto de desarrollo
   },

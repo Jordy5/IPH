@@ -36,10 +36,19 @@ exports.createUser = functions.https.onRequest((req, res) => {
     try {
       const { nombre, apellidoPaterno, apellidoMaterno, numeroMatricula, numeroPatrulla, municipio, institucion, entidadFederativa, cargoPolitico, correo, rol, contraseña } = req.body;
 
+      // Crear usuario en Auth con correo y contraseña
+
+      const userRecord = await admin.auth().createUser({
+        email: correo,
+        password: contraseña,
+        displayName: `${nombre} ${apellidoPaterno} ${apellidoMaterno}`
+      });
+
       // Ejemplo de creación de usuario en la base de datos
-      const userRef = admin.firestore().collection('usuarios').doc();
+      const userRef = admin.firestore().collection('users').doc(userRecord.uid);
       await userRef.set({
         nombre,
+        uid: userRecord.uid,
         apellidoPaterno,
         apellidoMaterno,
         numeroMatricula,
@@ -51,6 +60,7 @@ exports.createUser = functions.https.onRequest((req, res) => {
         correo,
         rol,
         contraseña,
+        createdAt: new Date()
       });
 
       // Respondemos con éxito

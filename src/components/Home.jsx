@@ -4,6 +4,8 @@ import appFirebase from '../credenciales'
 import { getAuth } from 'firebase/auth'
 import Navbar from '../components/Navbar'
 
+
+
 const auth = getAuth(appFirebase)
 
 const Home = ({ correoUsuario, usuario }) => {
@@ -17,12 +19,13 @@ const Home = ({ correoUsuario, usuario }) => {
   }
   if (usuario && usuario.rol === 'policia') {
     return <Navigate to="/policia" />; 
-  } 
+  }
+  
  
   return (
     <div>
       <Navbar></Navbar>
-      <h2 className='text-center' style={{ margin: 0, padding: 0 }}>Bienvenido {usuario.nombre}</h2>
+      <h2 variant="h1" className='text-center' style={{ margin: 0, padding: 0 }}>Bienvenido {usuario.nombre}</h2>
       <p>Tienes el rol de: {usuario.rol}</p> 
     </div>
   )

@@ -4,12 +4,15 @@ import { getAuth } from 'firebase/auth'
 import Navbar from './Navbar'
 import { Navigate } from 'react-router'
 import PoliceForm from './PoliceForm'
+import { Typography } from '@mui/material';
+
+
 
 const auth = getAuth(appFirebase)
 
 function AdminDashboard({ usuario }) {
   
-
+  
   if (!usuario) {
     return <Navigate to="/" replace />;
   }
@@ -29,7 +32,7 @@ function AdminDashboard({ usuario }) {
     return (
       <div>
         <Navbar></Navbar>
-        <h2 className='text-center' style={{ margin: 0, padding: 0 }}>Bienvenido {usuario?.nombre}</h2>        
+        <Typography variant='h3' className='text-center' style={{ margin: 0, padding: 0 }}>Bienvenido {usuario.rol}</Typography>        
         <div>
           <PoliceForm/>
         </div>

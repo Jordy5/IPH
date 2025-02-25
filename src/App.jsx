@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { db } from '../src/credenciales';
 
 
+
 //modulos de FireBase
 import appFirebase from '../src/credenciales'
 import { getAuth, onAuthStateChanged } from 'firebase/auth' 
@@ -22,36 +23,38 @@ function App() {
   const [usuario, setUsuario] = useState(null)
   const [loading, setLoading] = useState(true) 
   
-  //
-  // Comprobar estado de autenticación
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        const userRef = doc(db, "users", user.uid);
-        const docSnap = await getDoc(userRef);
+ 
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, async (user) => {
+  //     if (user) {
+  //       const userRef = doc(db, "users", user.uid);
+  //       const docSnap = await getDoc(userRef);
 
-        if (docSnap.exists()) {
-          const userData = docSnap.data();
-          if (userData.rol) {
-            setUsuario(user);
-          } else {
-            console.log("No se encontró el rol del usuario.");
-            setUsuario(null);
-          }
-        } else {
-          console.log("No se encontró el documento del usuario.");
-          setUsuario(null);
-        }
-      } else {
-        console.log("No hay usuario autenticado.");
-        setUsuario(null);
-      }
-      setLoading(false);
-    });
+  //       if (docSnap.exists()) {
+  //         const userData = docSnap.data();
+  //         if (userData.rol) {
+  //           setUsuario(user);
+  //         } else {
+  //           console.log("No se encontró el rol del usuario.");
+  //           setUsuario(null);
+  //         }
+  //       } else {
+  //         console.log("No se encontró el documento del usuario.");
+  //         setUsuario(null);
+  //       }
+  //     } else {
+  //       console.log("No hay usuario autenticado.");
+  //       setUsuario(null);
+  //     }
+  //     setLoading(false);
+  //   });
 
-    return () => unsubscribe();
-  }, []);
+  //   return () => unsubscribe();
+  // }, []);
   //
+  
+
+  
 
   const menu = () => {
     let menu_despl = document.getElementById('menu');
@@ -60,44 +63,70 @@ function App() {
     boton_cerrar.classList.toggle('colocar_x');
   }
 
-  onAuthStateChanged(auth, async (usuarioFirebase) => {
-    if (usuarioFirebase) {
-      try {
-        const userRef = doc(db, "users", usuarioFirebase.uid);
-        const docSnap = await getDoc(userRef);
+  onAuthStateChanged(auth, async (user) => {
+    // console.log("Auth: ", auth)
+    // console.log("User: ", user)
+    if (user) {
+      const userRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(userRef);
 
-        if (docSnap.exists()) {
-          const userData = docSnap.data();
-          if (userData.rol) {
-            setUsuario({ ...usuarioFirebase, ...userData });
-          } else {
-            console.log("No se encontró el rol del usuario.");
-            setUsuario(null);
-            return <navigate to="/login" />
-          }
+      if (docSnap.exists()) {
+        const userData = docSnap.data();
+        if (userData.rol) {
+          setUsuario(userData);
         } else {
-          console.log("No se encontró el documento del usuario.");
           setUsuario(null);
-          return <navigate to="/login" />
         }
-      } catch (error) {
-        console.error("Error al obtener los datos del usuario:", error);
+      } else {
         setUsuario(null);
-        return <navigate to="/login" />
       }
     } else {
       console.log("No hay usuario autenticado.");
       setUsuario(null);
-      return <navigate to="/login" />
     }
     setLoading(false);
   });
+
+
+
+  // onAuthStateChanged(auth, async (usuarioFirebase) => {
+  //   if (usuarioFirebase) {
+  //     try {
+  //       const userRef = doc(db, "users", usuarioFirebase.uid);
+  //       const docSnap = await getDoc(userRef);
+
+  //       if (docSnap.exists()) {
+  //         const userData = docSnap.data();
+  //         if (userData.rol) {
+  //           setUsuario({ ...usuarioFirebase, ...userData });
+  //         } else {
+  //           console.log("No se encontró el rol del usuario.");
+  //           setUsuario(null);
+  //           return <navigate to="/login" />
+  //         }
+  //       } else {
+  //         console.log("No se encontró el documento del usuario.");
+  //         setUsuario(null);
+  //         return <navigate to="/login" />
+  //       }
+  //     } catch (error) {
+  //       console.error("Error al obtener los datos del usuario:", error);
+  //       setUsuario(null);
+  //       return <navigate to="/login" />
+  //     }
+  //   } else {
+  //     console.log("No hay usuario autenticado.");
+  //     setUsuario(null);
+  //     return <navigate to="/login" />
+  //   }
+  //   setLoading(false);
+  // });
 
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={loading ? <>Cargando...</> : usuario ? <Home correoUsuario={usuario.email} usuario={usuario} rol={usuario.rol} /> : <Login />
+          <Route path="/" element={loading ? <>Cargando...</>: usuario ? <Home correoUsuario={usuario.email} usuario={usuario} rol={usuario.rol} /> : <Login />
           }
           />
           <Route path="/home" element={loading ? <>Cargando...</> : usuario ? <Home correoUsuario={usuario.email} usuario={usuario} rol={usuario.rol} /> : <Login />} />

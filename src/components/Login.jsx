@@ -3,8 +3,11 @@ import imgLogin from '../assets/parrot.jpg'
 import imge from '../assets/imagen.jpg'
 import appFirebase from '../credenciales'
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from 'firebase/auth'
-import { TextField } from '@mui/material'
+import { CircularProgress, TextField } from '@mui/material'
+
 const auth = getAuth(appFirebase)
+//
+
 
 const Login = (usuario) => {
     if(!usuario){
@@ -17,6 +20,7 @@ const Login = (usuario) => {
       if (usuario && usuario.rol === 'policia') {
         return <Navigate to="/policia" />; 
       } 
+      
     //variables de estado
     const { registrando, setRegistrando } = useState(false)
     const functAutentication = async (e) => {
@@ -49,7 +53,7 @@ const Login = (usuario) => {
                                 <input type='password' placeholder='Ingresa Contraseña' className='cajaTexto' id='password' required />
                                 
                                 <button className='btnform'>Iniciar Sesión</button>
-                                <a href=""></a>
+                                
                             </form>
                         </div>
                     </div>
