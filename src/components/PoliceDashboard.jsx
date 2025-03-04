@@ -12,27 +12,8 @@ function PoliceDashboard({ usuario }) {
 
 
       <Navbar></Navbar>
-      <h2  className='text-center'>Bienvenida {usuario.nombre}❤️</h2>
-      <h3 className='text-center'>Tienes el rol de: El Amor de mi Vida🥰</h3>
-     
+      <h2  className='text-center'>Bienvenido {usuario.nombre}❤️</h2>
       
-      <div className='text-center'style={{alignItems: "rigth"}}>
-      <p>
-     .......▄██▄ <br />
-......(((//)))) <br />
-...........(((◕_◕ )))..♥ <br />
-░░▄███▄███▄ <br />
-░░█████████ <br />
-░░▒▀█████▀ <br />
-░░░░░░▒░░▀█▀ .... Para Tiii
-      </p>
-      </div>
-      {/*
-       * 
-       * 
-       * 
-       * 
-       */}
       
       </div>
       

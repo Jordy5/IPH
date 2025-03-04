@@ -32,7 +32,7 @@ function AdminDashboard({ usuario }) {
     return (
       <div>
         <Navbar></Navbar>
-        <Typography variant='h3' className='text-center' style={{ margin: 0, padding: 0 }}>Bienvenido {usuario.rol}</Typography>        
+        <Typography variant='h3' className='text-center' style={{ margin: 0, padding: 0 }}>Bienvenido {usuario.nombre}</Typography>        
         <div>
           <PoliceForm/>
         </div>
