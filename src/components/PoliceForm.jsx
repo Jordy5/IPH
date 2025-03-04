@@ -159,7 +159,9 @@ const PoliceForm = () => {
             <TextField label="Dependencia" variant="outlined" />
             <TextField label="CUIP" variant="outlined" />
             <TextField label="Entidad" variant="outlined" />
-            <TextField label="Folio No." variant="outlined" /><br />
+            <TextField label="Folio No." variant="outlined" />
+            <p>colocar linea de separación</p>
+            <br />
             <Typography variant="h5">I. DATOS PERSONALES</Typography>
             <TextField label="Nombre" variant="outlined" />
             <TextField label="Segundo Nombre" variant="outlined" />
@@ -206,6 +208,7 @@ const PoliceForm = () => {
                 <MenuItem value="">Union libre o concubinato</MenuItem>
               </Select>
             </FormControl>
+            <p>----------------------------------</p>
             <Typography variant="h5">DESARROLLO ACADÉMICO</Typography>
             
             <FormControl fullWidth>
