@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { db } from '../src/credenciales';
-
-
+import {ProTypes} from 'prop-types'
+import Carga from './components/Carga/Carga'
 
 //modulos de FireBase
 import appFirebase from '../src/credenciales'
@@ -126,14 +126,14 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={loading ? <>Cargando...</>: usuario ? <Home correoUsuario={usuario.email} usuario={usuario} rol={usuario.rol} /> : <Login />
+          <Route path="/" element={loading ? <Carga/>: usuario ? <Home correoUsuario={usuario.email} usuario={usuario} rol={usuario.rol} /> : <Login />
           }
           />
-          <Route path="/home" element={loading ? <>Cargando...</> : usuario ? <Home correoUsuario={usuario.email} usuario={usuario} rol={usuario.rol} /> : <Login />} />
-          <Route path="/login" element={loading ? <>Cargando...</> : <Login />} />
-          <Route path="/admin" element={loading ? <>Cargando...</> : <AdminDashboard usuario={usuario} />} />
-          <Route path="/policia" element={loading ? <>Cargando...</> : <PoliceDashboard usuario={usuario} />} />
-          <Route path="/settings" element={loading ? <>Cargando...</> : <Settings usuario={usuario} />} />
+          <Route path="/home" element={loading ? <Carga /> : usuario ? <Home correoUsuario={usuario.email} usuario={usuario} rol={usuario.rol} /> : <Login />} />
+          <Route path="/login" element={loading ? <Carga/> : <Login />} />
+          <Route path="/admin" element={loading ? <Carga/> : <AdminDashboard usuario={usuario} />} />
+          <Route path="/policia" element={loading ? <Carga/> : <PoliceDashboard usuario={usuario} />} />
+          <Route path="/settings" element={loading ? <Carga/> : <Settings usuario={usuario} />} />
 
         </Routes>
       </BrowserRouter>

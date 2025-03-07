@@ -1,47 +1,52 @@
 import React, { useState } from 'react'
 import imgLogin from '../assets/parrot.jpg'
-import imge from '../assets/imagen.jpg'
 import appFirebase from '../credenciales'
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from 'firebase/auth'
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
 import { CircularProgress, TextField } from '@mui/material'
+import { Navigate } from 'react-router-dom'
 
 const auth = getAuth(appFirebase)
-//
-
 
 const Login = (usuario) => {
-    if(!usuario){
-        return <Navigate to="/" replace />; 
-      }
-      
-      if (usuario && usuario.rol === 'admin') {
+    if (!usuario) {
+        return <Navigate to="/" replace />;
+    }
+
+    if (usuario && usuario.rol === 'admin') {
         return <Navigate to="/admin" />;
-      }
-      if (usuario && usuario.rol === 'policia') {
-        return <Navigate to="/policia" />; 
-      } 
-      
+    }
+    if (usuario && usuario.rol === 'policia') {
+        return <Navigate to="/policia" />;
+    }
+
     //variables de estado
-    const { registrando, setRegistrando } = useState(false)
+    const [registrando, setRegistrando] = useState(false)
+    const [loading, setLoading] = useState(false)
+
     const functAutentication = async (e) => {
         e.preventDefault();
         const correo = e.target.email.value;
         const password = e.target.password.value;
 
-        //si la contraseña es incorrecta o su contraseña saldra una alerta para notificar al usuario
-        if (registrando) {
-            await createUserWithEmailAndPassword(auth, correo, password)
-        } else {
-            try {
+        setLoading(true); // Mostrar el indicador de carga
+
+        try {
+            if (registrando) {
+                await createUserWithEmailAndPassword(auth, correo, password)
+            } else {
                 await signInWithEmailAndPassword(auth, correo, password)
-            } catch (error) {
-                alert("El correo o la contraseña son incorrectos")
             }
+        } catch (error) {
+            alert("El correo o la contraseña son incorrectos")
+        } finally {
+            setTimeout(() => {
+                setLoading(false);
+            }, 4000);
+            setLoading(false);
         }
     }
-    
-    return (
 
+    return (
         <div className='container'>
             <div className="row">
                 <div className="col-md-4">
@@ -49,16 +54,17 @@ const Login = (usuario) => {
                         <div className="card card-body shadow-lg">
                             <img src={imgLogin} alt="" className='estilo-profile' />
                             <form onSubmit={functAutentication}>
-                                <input variant='outlined'type="text" placeholder='Ingresa Email' className='cajaTexto' id='email' required/>
+                                <input variant='outlined' type="text" placeholder='Ingresa Correo' className='cajaTexto' id='email' required />
                                 <input type='password' placeholder='Ingresa Contraseña' className='cajaTexto' id='password' required />
                                 
-                                <button className='btnform'>Iniciar Sesión</button>
-                                
+                                <button className='btnform' type="submit" disabled={loading}>
+                                    {loading ? <CircularProgress size={24} /> : 'Iniciar Sesión'}
+                                </button><br />
+                                <p style={{display:'flex',justifyContent: 'center'}} variant="outlined">© 2025</p>
                             </form>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     )

@@ -37,6 +37,6 @@ export default defineConfig({
     })
   ],
   optimizeDeps: {
-    exclude: ['@mui/x-date-pickers-pro', '@mui/x-date-pickers']
-  }
+    exclude: ['@mui/x-date-pickers-pro', '@mui/x-date-pickers', 'date-fns']
+  }  
 });
