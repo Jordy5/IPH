@@ -17,6 +17,7 @@ function HomeIcon(props) {
 
 import appFirebase from '../credenciales';
 import { getAuth, signOut } from 'firebase/auth';
+import { Avatar } from '@mui/material';
 const auth = getAuth(appFirebase);
 let vacio = '';
 
@@ -43,6 +44,7 @@ function Navbar() {
             <nav id='menu' className={`menu ${isOpen ? "open" : ""}`}>
                 <ul className="menu-list">
                     <li><a href={vacio} onClick={() => navigate("/")}><HomeIcon sx={{ fontSize: 30 }}/>Inicio</a></li>
+                    <li><a href="" onClick={() =>navigate("/")}>Mi Perfil</a></li>
                     <li><a
                         href={vacio}
                         onClick={async (e) => {
@@ -57,8 +59,10 @@ function Navbar() {
                     >
                         <LoginIcon />Cerrar Sesión
                     </a></li>
+                    
                 </ul>
             </nav>
+            <Avatar></Avatar>
         </div>
     );
 }

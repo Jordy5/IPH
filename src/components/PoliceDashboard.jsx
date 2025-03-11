@@ -9,10 +9,8 @@ function PoliceDashboard({ usuario }) {
   }
   return (
     <div>
-
-
       <Navbar></Navbar>
-      <h2  className='text-center'>Bienvenido {usuario.nombre}❤️</h2>
+      <h2  className='text-center'>Bienvenido {usuario.nombre}</h2>
       
       
       </div>

@@ -5,7 +5,8 @@ import Navbar from './Navbar'
 import { Navigate } from 'react-router'
 import PoliceForm from './PoliceForm'
 import { Typography } from '@mui/material';
-
+import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
+import { Box } from '@mui/system'
 
 
 const auth = getAuth(appFirebase)
@@ -30,13 +31,13 @@ function AdminDashboard({ usuario }) {
 
   
     return (
-      <div>
+      <Box>
         <Navbar></Navbar>
-        <Typography variant='h3' className='text-center' style={{ margin: 0, padding: 0 }}>Bienvenido {usuario.nombre}</Typography>        
-        <div>
+        <Typography variant='h3' className='text-left' style={{ margin: 0, padding: 0 }}>Bienvenido {usuario.nombre}</Typography>        
+        <Box>
           <PoliceForm/>
-        </div>
-      </div>
+        </Box>
+      </Box>
     )
   }
 

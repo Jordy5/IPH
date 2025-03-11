@@ -4,6 +4,8 @@ import appFirebase from '../credenciales'
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
 import { CircularProgress, TextField } from '@mui/material'
 import { Navigate } from 'react-router-dom'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { Box } from '@mui/system'
 
 const auth = getAuth(appFirebase)
 
@@ -47,26 +49,29 @@ const Login = (usuario) => {
     }
 
     return (
-        <div className='container'>
-            <div className="row">
-                <div className="col-md-4">
-                    <div className="padre">
-                        <div className="card card-body shadow-lg">
+        <Box className='container'>
+            <Box className="row">
+                <Box className="col-md-4">
+                    <Box className="padre">
+                        <Box className="card card-body shadow-lg">
                             <img src={imgLogin} alt="" className='estilo-profile' />
                             <form onSubmit={functAutentication}>
+                                
                                 <input variant='outlined' type="text" placeholder='Ingresa Correo' className='cajaTexto' id='email' required />
                                 <input type='password' placeholder='Ingresa Contraseña' className='cajaTexto' id='password' required />
                                 
                                 <button className='btnform' type="submit" disabled={loading}>
                                     {loading ? <CircularProgress size={24} /> : 'Iniciar Sesión'}
-                                </button><br />
-                                <p style={{display:'flex',justifyContent: 'center'}} variant="outlined">© 2025</p>
+                                </button>
+                                <li><a href="" onClick={() =>Navigate("/policia")}>Olvide mi contraseña?</a></li>
+                                <br />
+                                <p style={{display:'flex',justifyContent: 'center'}} variant="outlined">© 2025-2025</p>
                             </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                        </Box>
+                    </Box>
+                </Box>
+            </Box>
+        </Box>
     )
 }
 

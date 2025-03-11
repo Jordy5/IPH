@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { TextField, Button, Box, FormControl, InputLabel, Select, MenuItem, Menu, Typography, RadioGroup, FormControlLabel, Accordion, AccordionSummary, FormGroup } from "@mui/material";
+import { TextField, Button, Box, FormControl, InputLabel, Select, MenuItem, Menu, Typography, RadioGroup, FormControlLabel, Accordion, AccordionSummary, FormGroup, Collapse, Container, Paper } from "@mui/material";
 import {doc,setDoc ,getFirestore, collection, addDoc } from "firebase/firestore"; // Asegúrate de tener estos imports
 import { BASE_URL, db } from "../credenciales";
 import Divider from '@mui/material/Divider';
 import Checkbox from '@mui/material/Checkbox';
 import { TextareaAutosize } from '@mui/material';
 import Pagination from "../components/Pagination";
+import MenuLeft from "./Menus/MenuLeft";
+
 
 
 
@@ -14,6 +16,7 @@ import Pagination from "../components/Pagination";
 
 const PoliceForm = () => {
   const [isCreating, setIsCreating] = useState(false); // Cambié a 'false' para inicializarlo como un valor booleano
+  const [isCreatingMenu, setIsCreatingMenu] = useState(false); // Cambié a 'false' para inicializarlo como un valor booleano
   const [nombre, setNombre] = useState('');
   const [apellidoPaterno, setApellidoPaterno] = useState('');
   const [apellidoMaterno, setApellidoMaterno] = useState('');
@@ -27,6 +30,7 @@ const PoliceForm = () => {
   const [rol, setRol] = useState('');
   const [contraseña, setContraseña] = useState('');
   const [loading, setLoading] = useState(false)
+  const [activeMenu, setActiveMenu] = useState(false);
   
 
   const checkAdminRole = async () => {
@@ -148,25 +152,59 @@ const PoliceForm = () => {
   //
   
   return (
-    <div>
-      <Button style={{ marginBottom: 5 , marginTop: 5, marginLeft: 20}}
-      
-      variant="contained" onClick={() => setIsCreating(true) }>
-        Agregar Nuevo Elemento
-      </Button>
-      
-      
-      {isCreating && (
-        <div className="form-container" style={{ padding: 20 }}>
-          <Typography variant="h4">Agregue Datos Del Nuevo Elemento</Typography>
-          
-          <br />
-          <Pagination />
-          <Box component="form" sx={{ "& > :not(style)": { m: 1, width: "25ch" } }} noValidate autoComplete="off">
+    
+    <Paper >
+      <Box>
+        <MenuLeft setActiveMenu={setActiveMenu}/>
+      </Box>
+      <Box>
+      </Box>
+      <Box > 
+      </Box>  
+      <Collapse in={activeMenu === 'menu1'}>
+        <Box sx={{ border: 1, borderColor: 'divider', borderRadius: 1, padding: 1, margin: 1}}>
+          <Box>
+            <Typography variant="h4">Agregue Datos Del Nuevo Elemento</Typography>
+            <br />
+            <Pagination />
+            <Box component="form" sx={{ "& > :not(style)": { m: 1, width: "25ch" } }} noValidate autoComplete="off">
+            </Box>
           </Box>
+        </Box>
+      </Collapse>
+      <Collapse in={activeMenu === 'menu2'}>
+      <Box sx={{border: 1, borderColor: 'divider', borderRadius: 1, padding: 1, margin: 1 }}>
+        <div className="form-container" style={{ padding: 20 }}>
+        <Typography variant="h6">Menu 2</Typography>
         </div>
-      )}
-    </div>
+      </Box>
+      </Collapse>
+      <Collapse in={activeMenu === 'menu3'}>
+        <Box sx={{ border: 1, borderColor: 'divider', borderRadius: 1, padding: 1, margin: 1 }}>
+          <div className="form-container" style={{ padding: 20 }}>
+          <Typography variant="h6">Menu 3</Typography>
+          </div>
+        </Box>
+      </Collapse>
+      <Collapse in={activeMenu === 'menu4'}>
+        <Box sx={{ border: 1, borderColor: 'divider', borderRadius: 1, padding: 1, margin: 1 }}>
+          <div className="form-container" style={{ padding: 20 }}>
+            
+            <Typography variant="h6">Menu 4</Typography>
+            
+            
+          </div>
+        </Box>
+      </Collapse>
+      <Collapse in={activeMenu === 'menu5'}>
+        <Box sx={{ border: 1, borderColor: 'divider', borderRadius: 1, padding: 1, margin: 1 }}>
+          <Box className="form-container" style={{ padding: 20 }}>
+            
+            <Typography variant="h6">Menu 5</Typography>
+          </Box>
+        </Box>
+      </Collapse>
+    </Paper>
   );
 };
 export default PoliceForm;

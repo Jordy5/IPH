@@ -18,6 +18,7 @@ import Home from '../src/components/Home'
 import Settings from '../src/components/settings'
 import AdminDashboard from './components/AdminDashboard'
 import PoliceDashboard from './components/PoliceDashboard'
+import Password from './components/password/Password';
 
 function App() {
   const [usuario, setUsuario] = useState(null)
@@ -134,6 +135,7 @@ function App() {
           <Route path="/admin" element={loading ? <Carga/> : <AdminDashboard usuario={usuario} />} />
           <Route path="/policia" element={loading ? <Carga/> : <PoliceDashboard usuario={usuario} />} />
           <Route path="/settings" element={loading ? <Carga/> : <Settings usuario={usuario} />} />
+          <Route path="/password" element={loading ? <Carga/> : <Password usuario={(usuario)}/>}/>
 
         </Routes>
       </BrowserRouter>

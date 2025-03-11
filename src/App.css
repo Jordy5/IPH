@@ -219,11 +219,6 @@ ul li a:hover{
 /*para configuro como se veria en celular*/
 @media (max-width: 500px){
     
-    .desplegable{
-        /* width: 100%; */
-        /* height: 100vh; */
-        /* font-size: 1.6rem; */
-    }
     button{
         margin: 10px 10px 10px 15px;
         border: none;
@@ -251,11 +246,12 @@ ul li a:hover{
     background: none;
     border: none;
     color: white;
-    font-size: 30px;
+    font-size: 24px;
     cursor: pointer;
 }
 
 .navbar-title {
+    margin: 0;
     color: white;
     margin-left: 20px;
     font-size: 24px;
@@ -280,9 +276,7 @@ ul li a:hover{
 .menu-list {
     list-style: none;
     padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
+    margin: 0;    
     align-items: center;
 }
 
@@ -290,12 +284,11 @@ ul li a:hover{
     margin: 10px 0;
 }
 
-.menu-list a {
+.menu-list li a {
+    display: block;
+    padding: 10px;
     color: white;
     text-decoration: none;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
 }
 
 .menu-list a svg {
@@ -313,5 +306,3 @@ https://developer.mozilla.org/es/docs/Web/API/Network_Information_API
 https://supabase.com/pricing
 
 */
-
-
